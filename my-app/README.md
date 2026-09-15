@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ArcadeLX
 
-## Getting Started
+ArcadeLX is a premium motion-gaming kiosk website built with Next.js, React, TypeScript, Tailwind CSS, GSAP, and ShaderGradient.
 
-First, run the development server:
+## Quick Start
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint     # ESLint
+npm run build    # Production build and TypeScript validation
+npm run start    # Start the production server
+```
 
-## Learn More
+## Main Files
 
-To learn more about Next.js, take a look at the following resources:
+- [app/page.tsx](app/page.tsx) is the route entry.
+- [components/ArcadeLXLanding.tsx](components/ArcadeLXLanding.tsx) contains the landing page and interactive behavior.
+- [app/globals.css](app/globals.css) contains global tokens and responsive styles.
+- [app/arcadelx.css](app/arcadelx.css) contains the kiosk player silhouette styles.
+- [app/layout.tsx](app/layout.tsx) defines metadata and the document shell.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+More detail is available in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) and [docs/ANIMATIONS.md](docs/ANIMATIONS.md).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Brand Assets
 
-## Deploy on Vercel
+The official logo is used from `/arcadelx_logo.png` and must not be recreated or replaced.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Charles Rosie is loaded locally from `/fonts/CharlesRosie.woff2` with `@font-face`. The site does not use Google Fonts or an external font CDN.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Animation
+
+GSAP and ScrollTrigger power the hero timeline, section reveals, statistics counters, kiosk movement, neon effects, and desktop-only pointer parallax. Reduced-motion preferences are respected.
+
+ShaderGradient is isolated and memoized to avoid unnecessary WebGL remounts when other page state changes.
+
+## Responsive Behavior
+
+The layout has dedicated behavior for mobile, narrow screens, tablets, and desktop widths. Mobile navigation, hero ordering, kiosk sizing, horizontal game and gallery tracks, stacked video content, two-column statistics, and a stacked footer are included.
+
+## Content
+
+Replace placeholder contact behavior and content before connecting the page to production services.
