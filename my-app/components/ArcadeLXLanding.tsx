@@ -103,8 +103,8 @@ export default function ArcadeLXLanding() {
         }
       });
       if (!reduce) {
-        gsap.to(".lx-kiosk", {
-          y: -1,
+        gsap.to(".lx-hero .lx-kiosk", {
+          y: "-=10",
           duration: 3.8,
           repeat: -1,
           yoyo: true,
@@ -129,7 +129,7 @@ export default function ArcadeLXLanding() {
           },
         })
         .to(".lx-parallax-copy", { y: -65, opacity: 0.72 }, 0)
-        .to(".lx-parallax-kiosk", { y: 100, scale: 0.96 }, 0)
+        .to(".lx-parallax-kiosk", { y: 28, scale: 0.98 }, 0)
         .to(".lx-parallax-bg", { y: 75, opacity: 0.55 }, 0);
       gsap.utils.toArray<HTMLElement>(".lx-stat-value").forEach((element) => {
         if (reduce) return;
@@ -158,11 +158,11 @@ export default function ArcadeLXLanding() {
           duration: 0.8,
           ease: "power3.out",
         });
-        const quickKioskX = gsap.quickTo(".lx-parallax-kiosk", "x", {
+        const quickKioskX = gsap.quickTo(".lx-hero .lx-kiosk-wrap", "x", {
           duration: 0.8,
           ease: "power3.out",
         });
-        const quickKioskY = gsap.quickTo(".lx-parallax-kiosk", "y", {
+        const quickKioskY = gsap.quickTo(".lx-hero .lx-kiosk-wrap", "y", {
           duration: 0.8,
           ease: "power3.out",
         });

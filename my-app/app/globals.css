@@ -1214,20 +1214,18 @@ h2 em {
   justify-content: center;
   margin-right: 10px;
   width: 29px;
-}.lx-hero-visual {
-  position: relative;
-transform: translateY(100px);
+}
+.lx-hero-visual {
+  align-items: center;
   display: flex;
-  align-items: flex-start;
   justify-content: center;
-
-  min-width: 0;
   min-height: 0;
-
-  padding-top: 20px;
-
+  min-width: 0;
+  padding-top: 0;
+  position: relative;
   z-index: 4;
-}.lx-kiosk-wrap {
+}
+.lx-kiosk-wrap {
   position: relative;
 
   width: clamp(320px, 30vw, 500px);
@@ -1376,7 +1374,7 @@ transform: translateY(100px);
   border-radius: 50%;
   box-shadow: 0 0 10px #00d9ff;
   height: 7px;
-  width: 7px;
+  width: 5px;
 }
 .lx-kiosk-base i:nth-child(2) {
   background: #ff00d4;
@@ -2107,6 +2105,7 @@ transform: translateY(100px);
     min-height: 430px;
     order: 2;
     overflow: hidden;
+    transform: none;
   }
   .lx-kiosk-wrap {
     height: min(112vw, 470px);
