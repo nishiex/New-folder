@@ -2330,5 +2330,68 @@ h2 em {
   }
 }
 
+/* Phone layout refinements */
+@media (max-width: 767px) {
+  .lx-menu-button {
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    min-width: 44px;
+  }
+  .lx-mobile-nav a {
+    min-height: 44px;
+  }
+  .lx-feature-grid {
+    gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .lx-feature-card {
+    min-height: 210px;
+    padding: 16px;
+  }
+  .lx-feature-card > b {
+    margin: 18px 0 12px;
+  }
+  .lx-feature-card h3 {
+    font-size: 12px;
+  }
+  .lx-feature-card p {
+    font-size: 11px;
+    line-height: 1.35;
+  }
+  .lx-hero-visual {
+    min-height: min(118vw, 430px);
+  }
+  .lx-kiosk-wrap {
+    height: min(112vw, 430px);
+  }
+  .lx-final-cta > .lx-kiosk-wrap {
+    height: 255px;
+    margin-top: -8px;
+  }
+  .lx-kiosk-compact {
+    height: 255px;
+    transform: scale(0.56);
+  }
+}
+
+@media (max-width: 374px) {
+  .lx-feature-grid {
+    grid-template-columns: 1fr;
+  }
+  .lx-feature-card {
+    min-height: 174px;
+  }
+  .lx-feature-card > b {
+    margin: 14px 0 9px;
+  }
+  .lx-final-cta > .lx-kiosk-wrap,
+  .lx-kiosk-compact {
+    height: 230px;
+  }
+  .lx-kiosk-compact {
+    transform: scale(0.52);
+  }
+}
 
 
