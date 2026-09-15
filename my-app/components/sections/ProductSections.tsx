@@ -2,17 +2,327 @@
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { GameController, Heart, Lightning, Play, Star, TrendUp, UsersThree } from "@phosphor-icons/react";
-import { audiences, features, games, galleryItems, stats, videos } from "../arcadelx-data";
+import {
+  GameController,
+  Heart,
+  Lightning,
+  Play,
+  Star,
+  TrendUp,
+  UsersThree,
+} from "@phosphor-icons/react";
+import {
+  audiences,
+  features,
+  games,
+  galleryItems,
+  stats,
+  videos,
+} from "../arcadelx-data";
 import { KioskVisual, MotionGradient } from "./Hero";
 import { SectionHeading } from "../ui/ArcadePrimitives";
 
-export function TrustedOrganizations() { return <section className="lx-section lx-trust lx-scroll-reveal" id="business"><p className="lx-eyebrow">Built for everywhere</p><h2>Trusted by forward-thinking organizations.</h2><div className="lx-audience-grid">{audiences.map((item, index) => <div key={item}><small>0{index + 1}</small><b>{item}</b></div>)}</div></section>; }
-export function ProductFeatures() { return <section className="lx-section lx-features" id="about"><SectionHeading eyebrow="Product features" title={<>Powerful. Engaging.<br /><em>Built for everywhere.</em></>} description="Everything you need to turn unused space into a magnetic, active entertainment destination." /><div className="lx-feature-grid">{features.map(({ number, title, copy, icon: Icon }) => <article className="lx-feature-card lx-scroll-reveal" key={number}><small>{number}</small><b><Icon size={28} weight="duotone" /></b><h3>{title}</h3><p>{copy}</p></article>)}</div></section>; }
-export function MotionField() { return <section className="lx-motion-field lx-scroll-reveal" aria-label="ArcadeLX motion field"><div className="lx-motion-copy"><p className="lx-eyebrow">Feel the energy</p><h2>Play has<br /><em>a pulse.</em></h2><p>Color, motion and sound come together to make every ArcadeLX moment feel alive.</p></div><div className="lx-motion-canvas"><MotionGradient /></div></section>; }
-export function FeaturedGames() { const [active, setActive] = useState(0); return <section className="lx-section lx-games" id="games"><SectionHeading eyebrow="Featured games" title={<>A world of games.<br /><em>More movement.</em></>} description="Different players. Different moods. One unforgettable arcade experience." /><div className="lx-horizontal-track">{games.map(({ title, category, number }, index) => <article className={`lx-game-card game-${number}${index === active ? " is-active" : ""}`} key={title} onClick={() => setActive(index)} tabIndex={0} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") setActive(index); }}><span>{number}</span><div className="lx-game-art"><i><GameController size={34} weight="duotone" /></i><strong>{title.split(" ").slice(0, 2).join(" ")}</strong></div><small>{category}</small><h3>{title}</h3></article>)}</div></section>; }
-export function Gallery() { const [active, setActive] = useState("All"); const track = useRef<HTMLDivElement>(null); const items = galleryItems.filter(({ category }) => active === "All" || active.toLowerCase().replace(" ", "-") === category || (active === "Setup" && category === "kiosk")); useEffect(() => { const trackElement = track.current; if (!trackElement) return; const cards = trackElement.querySelectorAll(".lx-gallery-card"); gsap.fromTo(cards, { opacity: 0, y: 18, clipPath: "inset(0 0 16% 0)" }, { opacity: 1, y: 0, clipPath: "inset(0 0 0% 0)", duration: .55, stagger: .08, ease: "power3.out" }); return () => gsap.killTweensOf(cards); }, [active]); return <section className="lx-gallery lx-scroll-reveal" id="gallery"><div className="lx-section-heading lx-gallery-heading"><div><p className="lx-eyebrow">Gallery</p><h2>Explore ArcadeLX<br /><em>from every angle.</em></h2></div><div className="lx-filter-row">{["All", "Kiosk", "Setup", "In action", "Events"].map((filter) => <button className={active === filter ? "is-active" : ""} key={filter} onClick={() => setActive(filter)}>{filter}</button>)}</div></div><div className="lx-gallery-track" ref={track}>{items.map(({ label, title, category }, index) => <div className={`lx-gallery-card gallery-${index + 1} ${category}`} key={label}><span>{label}</span><b>{title}</b></div>)}</div></section>; }
-export function VideoSection() { const [active, setActive] = useState(0); return <section className="lx-section lx-video" id="video"><SectionHeading eyebrow="Video" title={<>See ArcadeLX<br /><em>in action.</em></>} /><div className="lx-video-layout"><div className="lx-video-player"><div className="lx-play-button"><Play size={22} weight="fill" /></div><small>ARCADELX / PLAY FILM / 0{active + 1}</small></div><div className="lx-video-list">{videos.map(({ title, time }, index) => <button className={index === active ? "is-active" : ""} key={title} onClick={() => setActive(index)}><span>0{index + 1}</span><b>{title}</b><small>{time}</small></button>)}</div></div></section>; }
-export function WhyArcadeLX() { return <section className="lx-why lx-scroll-reveal"><div><p className="lx-eyebrow">Why ArcadeLX?</p><h2>More than just games.<br /><em>A healthier, happier tomorrow.</em></h2></div><div className="lx-benefit-grid"><span><Heart weight="duotone" /><b>Active lifestyle</b><small>Turn screen time into movement time.</small></span><span><UsersThree weight="duotone" /><b>Increases engagement</b><small>Interactive experiences players remember.</small></span><span><TrendUp weight="duotone" /><b>New revenue stream</b><small>Transform unused space into energy.</small></span><span><Star weight="duotone" /><b>Premium look & feel</b><small>Designed to stand out.</small></span><span><Lightning weight="duotone" /><b>All age groups</b><small>Fun for kids, families and adults.</small></span></div></section>; }
-export function Statistics() { return <section className="lx-stats lx-scroll-reveal">{stats.map(({ value, label }) => <div key={label}><strong className="lx-stat-value" data-value={value.replace(/\D/g, "")} data-suffix={value.replace(/\d/g, "")}>{value}</strong><span>{label}</span></div>)}</section>; }
-export function FinalCTA() { return <section className="lx-final-cta lx-scroll-reveal lx-neon-pulse" id="contact"><div><p className="lx-eyebrow">Ready when you are</p><h2>Ready to bring<br /><em>ArcadeLX to your space?</em></h2><p>Get pricing, customization options, and installation support.</p><div className="lx-actions"><a className="lx-order" href="mailto:hello@arcadelx.com">Order now <span>↗</span></a><a className="lx-watch" href="mailto:hello@arcadelx.com">Request a demo</a></div><ul><li>Best for malls, corporates, schools, gyms</li><li>Flexible purchase or rental options</li><li>Pan India support</li><li>Custom branding available</li></ul></div><KioskVisual compact /></section>; }
+export function TrustedOrganizations() {
+  return (
+    <section className="lx-section lx-trust lx-scroll-reveal" id="business">
+      <p className="lx-eyebrow">Built for everywhere</p>
+      <h2>Trusted by forward-thinking organizations.</h2>
+      <div className="lx-audience-grid">
+        {audiences.map((item, index) => (
+          <div key={item}>
+            <small>0{index + 1}</small>
+            <b>{item}</b>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+export function ProductFeatures() {
+  return (
+    <section className="lx-section lx-features" id="about">
+      <SectionHeading
+        eyebrow="Product features"
+        title={
+          <>
+            Powerful. Engaging.
+            <br />
+            <em>Built for everywhere.</em>
+          </>
+        }
+        description="Everything you need to turn unused space into a magnetic, active entertainment destination."
+      />
+      <div className="lx-feature-grid">
+        {features.map(({ number, title, copy, icon: Icon }) => (
+          <article className="lx-feature-card lx-scroll-reveal" key={number}>
+            <small>{number}</small>
+            <b>
+              <Icon size={28} weight="duotone" />
+            </b>
+            <h3>{title}</h3>
+            <p>{copy}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+export function MotionField() {
+  return (
+    <section
+      className="lx-motion-field lx-scroll-reveal"
+      aria-label="ArcadeLX motion field"
+    >
+      <div className="lx-motion-copy">
+        <p className="lx-eyebrow">Feel the energy</p>
+        <h2>
+          Play has
+          <br />
+          <em>a pulse.</em>
+        </h2>
+        <p>
+          Color, motion and sound come together to make every ArcadeLX moment
+          feel alive.
+        </p>
+      </div>
+      <div className="lx-motion-canvas">
+        <MotionGradient />
+      </div>
+    </section>
+  );
+}
+export function FeaturedGames() {
+  const [active, setActive] = useState(0);
+  return (
+    <section className="lx-section lx-games" id="games">
+      <SectionHeading
+        eyebrow="Featured games"
+        title={
+          <>
+            A world of games.
+            <br />
+            <em>More movement.</em>
+          </>
+        }
+        description="Different players. Different moods. One unforgettable arcade experience."
+      />
+      <div className="lx-horizontal-track">
+        {games.map(({ title, category, number }, index) => (
+          <article
+            className={`lx-game-card game-${number}${index === active ? " is-active" : ""}`}
+            key={title}
+            onClick={() => setActive(index)}
+            tabIndex={0}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") setActive(index);
+            }}
+          >
+            <span>{number}</span>
+            <div className="lx-game-art">
+              <i>
+                <GameController size={34} weight="duotone" />
+              </i>
+              <strong>{title.split(" ").slice(0, 2).join(" ")}</strong>
+            </div>
+            <small>{category}</small>
+            <h3>{title}</h3>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+export function Gallery() {
+  const [active, setActive] = useState("All");
+  const track = useRef<HTMLDivElement>(null);
+  const items = galleryItems.filter(
+    ({ category }) =>
+      active === "All" ||
+      active.toLowerCase().replace(" ", "-") === category ||
+      (active === "Setup" && category === "kiosk"),
+  );
+  useEffect(() => {
+    const trackElement = track.current;
+    if (!trackElement) return;
+    const cards = trackElement.querySelectorAll(".lx-gallery-card");
+    gsap.fromTo(
+      cards,
+      { opacity: 0, y: 18, clipPath: "inset(0 0 16% 0)" },
+      {
+        opacity: 1,
+        y: 0,
+        clipPath: "inset(0 0 0% 0)",
+        duration: 0.55,
+        stagger: 0.08,
+        ease: "power3.out",
+      },
+    );
+    return () => gsap.killTweensOf(cards);
+  }, [active]);
+  return (
+    <section className="lx-gallery lx-scroll-reveal" id="gallery">
+      <div className="lx-section-heading lx-gallery-heading">
+        <div>
+          <p className="lx-eyebrow">Gallery</p>
+          <h2>
+            Explore ArcadeLX
+            <br />
+            <em>from every angle.</em>
+          </h2>
+        </div>
+        <div className="lx-filter-row">
+          {["All", "Kiosk", "Setup", "In action", "Events"].map((filter) => (
+            <button
+              className={active === filter ? "is-active" : ""}
+              key={filter}
+              onClick={() => setActive(filter)}
+            >
+              {filter}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div className="lx-gallery-track" ref={track}>
+        {items.map(({ label, title, category }, index) => (
+          <div
+            className={`lx-gallery-card gallery-${index + 1} ${category}`}
+            key={label}
+          >
+            <span>{label}</span>
+            <b>{title}</b>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+export function VideoSection() {
+  const [active, setActive] = useState(0);
+  return (
+    <section className="lx-section lx-video" id="video">
+      <SectionHeading
+        eyebrow="Video"
+        title={
+          <>
+            See ArcadeLX
+            <br />
+            <em>in action.</em>
+          </>
+        }
+      />
+      <div className="lx-video-layout">
+        <div className="lx-video-player">
+          <div className="lx-play-button">
+            <Play size={22} weight="fill" />
+          </div>
+          <small>ARCADELX / PLAY FILM / 0{active + 1}</small>
+        </div>
+        <div className="lx-video-list">
+          {videos.map(({ title, time }, index) => (
+            <button
+              className={index === active ? "is-active" : ""}
+              key={title}
+              onClick={() => setActive(index)}
+            >
+              <span>0{index + 1}</span>
+              <b>{title}</b>
+              <small>{time}</small>
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+export function WhyArcadeLX() {
+  return (
+    <section className="lx-why lx-scroll-reveal">
+      <div>
+        <p className="lx-eyebrow">Why ArcadeLX?</p>
+        <h2>
+          More than just games.
+          <br />
+          <em>A healthier, happier tomorrow.</em>
+        </h2>
+      </div>
+      <div className="lx-benefit-grid">
+        <span>
+          <Heart weight="duotone" />
+          <b>Active lifestyle</b>
+          <small>Turn screen time into movement time.</small>
+        </span>
+        <span>
+          <UsersThree weight="duotone" />
+          <b>Increases engagement</b>
+          <small>Interactive experiences players remember.</small>
+        </span>
+        <span>
+          <TrendUp weight="duotone" />
+          <b>New revenue stream</b>
+          <small>Transform unused space into energy.</small>
+        </span>
+        <span>
+          <Star weight="duotone" />
+          <b>Premium look & feel</b>
+          <small>Designed to stand out.</small>
+        </span>
+        <span>
+          <Lightning weight="duotone" />
+          <b>All age groups</b>
+          <small>Fun for kids, families and adults.</small>
+        </span>
+      </div>
+    </section>
+  );
+}
+export function Statistics() {
+  return (
+    <section className="lx-stats lx-scroll-reveal">
+      {stats.map(({ value, label }) => (
+        <div key={label}>
+          <strong
+            className="lx-stat-value"
+            data-value={value.replace(/\D/g, "")}
+            data-suffix={value.replace(/\d/g, "")}
+          >
+            {value}
+          </strong>
+          <span>{label}</span>
+        </div>
+      ))}
+    </section>
+  );
+}
+export function FinalCTA() {
+  return (
+    <section
+      className="lx-final-cta lx-scroll-reveal lx-neon-pulse"
+      id="contact"
+    >
+      <div>
+        <p className="lx-eyebrow">Ready when you are</p>
+        <h2>
+          Ready to bring
+          <br />
+          <em>ArcadeLX to your space?</em>
+        </h2>
+        <p>Get pricing, customization options, and installation support.</p>
+        <div className="lx-actions">
+          <a className="lx-order" href="mailto:hello@arcadelx.com">
+            Order now <span>↗</span>
+          </a>
+          <a className="lx-watch" href="mailto:hello@arcadelx.com">
+            Request a demo
+          </a>
+        </div>
+        <ul>
+          <li>Best for malls, corporates, schools, gyms</li>
+          <li>Flexible purchase or rental options</li>
+          <li>Pan India support</li>
+          <li>Custom branding available</li>
+        </ul>
+      </div>
+      <KioskVisual compact />
+    </section>
+  );
+}
