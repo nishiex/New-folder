@@ -110,14 +110,6 @@ export default function ArcadeLXLanding() {
           yoyo: true,
           ease: "sine.inOut",
         });
-        gsap.to(".lx-neon-pulse", {
-          opacity: 0.68,
-          boxShadow: "0 0 26px rgba(0,217,255,.5)",
-          duration: 2.7,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-        });
       }
       gsap
         .timeline({

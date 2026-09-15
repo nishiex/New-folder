@@ -51,6 +51,7 @@ export const MotionGradient = memo(function MotionGradient() {
   return (
     <ShaderGradientCanvas
       className="shader-gradient-canvas"
+      lazyLoad={false}
       pointerEvents="none"
       pixelDensity={1}
     >

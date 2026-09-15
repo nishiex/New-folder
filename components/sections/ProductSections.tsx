@@ -296,7 +296,7 @@ export function Statistics() {
 export function FinalCTA() {
   return (
     <section
-      className="lx-final-cta lx-scroll-reveal lx-neon-pulse"
+      className="lx-final-cta lx-scroll-reveal"
       id="contact"
     >
       <div>
