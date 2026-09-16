@@ -48,7 +48,7 @@ export default function SiteFooter() {
         </form>
       </div>
       <small className="lx-copyright text-[#71829d] col-span-full mt-[20px]">
-        Â© 2026 ArcadeLX. All rights reserved.
+       © 2026 ArcadeLX. All rights reserved.
       </small>
     </footer>
   );

@@ -52,7 +52,7 @@ export function ProductFeatures() {
         }
         description="Everything you need to turn unused space into a magnetic, active entertainment destination."
       />
-      <div className="lx-feature-grid grid gap-[24px] grid-cols-1 md:grid-cols-[repeat(3,1fr)]">
+      <div className="lx-feature-grid grid gap-[24px] grid-cols-[repeat(3,1fr)]">
         {features.map(({ number, title, copy, icon: Icon }) => (
           <article className="lx-feature-card lx-scroll-reveal p-[17px] min-h-[220px] bg-transparent" key={number}>
             <small className="text-[#71829d]">{number}</small>
@@ -309,4 +309,3 @@ export function FinalCTA() {
     </section>
   );
 }
-

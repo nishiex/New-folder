@@ -2347,9 +2347,16 @@ h2 em {
 /* Mobile (<=430px) layout fixes to prevent hero overlap and ensure 1-column features */
 @media (max-width: 430px) {
   /* Small-screen / phone adjustments (mobile-first overrides for specific components) */
-  .lx-hero, .lx-section, .lx-gallery, .lx-why, .lx-final-cta { padding-left: 16px; padding-right: 16px; }
+  .lx-hero,
+  .lx-section,
+  .lx-gallery,
+  .lx-why,
+  .lx-final-cta {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
   .lx-header { padding: 0 16px; }
-  .lx-hero h1 { font-size: clamp(36px, 6.5vw, 94px); }
+  .lx-hero h1 { font-size: 2.55rem; }
 
   /* Hero visual: stack vertically and center kiosk */
   .lx-hero { display: block; padding: 16px 12px; min-height: auto; }
@@ -2357,27 +2364,66 @@ h2 em {
   .lx-hero-visual { order: 2; display: flex; justify-content: center; align-items: center; width: 100%; margin: 0 auto; min-height: 0; height: auto; padding: 0; }
 
   /* Kiosk container - responsive and centered */
-  .lx-kiosk-wrap { position: relative; left: auto; right: auto; transform: none; width: min(92vw, 360px); max-width: 100%; aspect-ratio: 0.62; height: auto; margin: 0 auto; display: flex; justify-content: center; align-items: center; }
-  .lx-kiosk { position: relative; left: auto; right: auto; transform: none; width: 100%; height: auto; max-width: 100%; margin: 0 auto; }
-  .lx-kiosk-screen, .lx-kiosk-top { position: relative; }
+  .lx-kiosk-wrap {
+    position: relative;
+    left: auto;
+    right: auto;
+    transform: none;
+    width: min(92vw, 360px);
+    max-width: 100%;
+    aspect-ratio: 0.62;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .lx-kiosk {
+    position: relative;
+    left: auto;
+    right: auto;
+    transform: none;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .lx-kiosk-screen,
+  .lx-kiosk-top { position: relative; }
 
   /* Glow / decorative orbits should be centered within the kiosk-wrap and not exceed it to avoid overflow */
-  .lx-kiosk-glow, .lx-orbit, .lx-orbit-two { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 100%; height: 100%; max-width: none; opacity: 0.9; pointer-events: none; }
-
-  /* Typography: responsive clamps for kiosk and hero text */
-  .lx-kiosk-top { font-size: clamp(12px, 3.6vw, 16px); letter-spacing: 0.12em; }
-  .lx-kiosk-top b { font-size: clamp(14px, 4.0vw, 20px); }
-  .lx-kiosk-screen span { font-size: clamp(18px, 5.5vw, 28px); line-height: 0.92; text-align: center; display: block; }
-  .lx-kiosk-screen strong { font-size: clamp(28px, 7.5vw, 42px); }
-  .lx-kiosk-screen small { font-size: clamp(8px, 2.2vw, 10px); letter-spacing: 0.2em; }
+  .lx-kiosk-glow,
+  .lx-orbit,
+  .lx-orbit-two {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    opacity: 0.9;
+    pointer-events: none;
+  }
 
   /* Visual label flows under kiosk on mobile to avoid clipping */
-  .lx-visual-label { position: static; right: auto; bottom: auto; text-align: center; margin-top: 12px; display: block; font-size: clamp(10px, 3vw, 11px); }
+  .lx-visual-label {
+    position: static;
+    right: auto;
+    bottom: auto;
+    text-align: center;
+    margin-top: 12px;
+    display: block;
+  }
 
   /* Features: two columns on mobile */
-  .lx-hero-features { margin-top: 16px; grid-template-columns: repeat(2, 1fr); gap: 20px; order: 3; transform: none; }
-  .lx-hero-features span { font-size: clamp(12px, 3.4vw, 14px); }
-  .lx-hero-features small { font-size: clamp(10px, 3vw, 11px); }
+  .lx-hero-features {
+    margin-top: 16px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    order: 3;
+    transform: none;
+  }
 
   /* Keep a safe default for feature grid */
   .lx-feature-grid { grid-template-columns: 1fr; }
@@ -2406,6 +2452,5 @@ h2 em {
   .orbit { position: absolute; }
   .orbit-two { position: absolute; }
 }
-
 
 

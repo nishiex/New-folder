@@ -7,8 +7,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        display: ['var(--font-display)', 'Bricolage Grotesque', 'ui-sans-serif', 'system-ui'],
-        sans: ['var(--font-body)', 'Space Grotesk', 'ui-sans-serif', 'system-ui'],
+        sans: ['"Charles Rosie"', 'sans-serif'],
+        space: ['"Space Grotesk"', 'sans-serif'],
       },
       colors: {
         cyan: 'var(--cyan)',

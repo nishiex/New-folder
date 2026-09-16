@@ -20,7 +20,7 @@ import {
   videos,
 } from "../arcadelx-data";
 import { KioskVisual, MotionGradient } from "./Hero";
-import { SectionHeading, NeonButton } from "../ui/ArcadePrimitives";
+import { SectionHeading } from "../ui/ArcadePrimitives";
 
 export function TrustedOrganizations() {
   return (
@@ -52,7 +52,7 @@ export function ProductFeatures() {
         }
         description="Everything you need to turn unused space into a magnetic, active entertainment destination."
       />
-      <div className="lx-feature-grid grid gap-[24px] grid-cols-1 md:grid-cols-[repeat(3,1fr)]">
+      <div className="lx-feature-grid grid gap-[24px] grid-cols-[repeat(3,1fr)]">
         {features.map(({ number, title, copy, icon: Icon }) => (
           <article className="lx-feature-card lx-scroll-reveal p-[17px] min-h-[220px] bg-transparent" key={number}>
             <small className="text-[#71829d]">{number}</small>
@@ -299,7 +299,9 @@ export function FinalCTA() {
         </h2>
         <p className="text-[#71829d] mt-3">Get pricing, customization options, and installation support.</p>
         <div className="lx-actions mt-6 flex items-center gap-[18px]">
-          <NeonButton href="mailto:hello@arcadelx.com">Order now</NeonButton>
+          <a className="lx-order inline-flex items-center" href="mailto:hello@arcadelx.com">
+            Order now <span className="ml-2"></span>
+          </a>
           <a className="lx-watch inline-flex items-center text-[#fff]" href="mailto:hello@arcadelx.com">
             Request a demo
           </a>
@@ -309,4 +311,3 @@ export function FinalCTA() {
     </section>
   );
 }
-
