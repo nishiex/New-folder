@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -102,15 +102,8 @@ export default function ArcadeLXLanding() {
           });
         }
       });
-      if (!reduce) {
-        gsap.to(".lx-hero .lx-kiosk", {
-          y: "-=10",
-          duration: 3.8,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-        });
-      }
+            // Keep kiosk stable; removed looping y animation to keep kiosk visually stable while cards animate.
+
       gsap
         .timeline({
           scrollTrigger: {
@@ -150,22 +143,12 @@ export default function ArcadeLXLanding() {
           duration: 0.8,
           ease: "power3.out",
         });
-        const quickKioskX = gsap.quickTo(".lx-hero .lx-kiosk-wrap", "x", {
-          duration: 0.8,
-          ease: "power3.out",
-        });
-        const quickKioskY = gsap.quickTo(".lx-hero .lx-kiosk-wrap", "y", {
-          duration: 0.8,
-          ease: "power3.out",
-        });
         const onMove = (event: MouseEvent) => {
           const x = event.clientX / window.innerWidth - 0.5;
           const y = event.clientY / window.innerHeight - 0.5;
           quickX(x * 10);
           quickY(y * 8);
-          quickKioskX(x * 18);
-          quickKioskY(y * 12);
-        };
+          };
         window.addEventListener("pointermove", onMove);
         return () => window.removeEventListener("pointermove", onMove);
       });
@@ -191,3 +174,4 @@ export default function ArcadeLXLanding() {
     </main>
   );
 }
+
