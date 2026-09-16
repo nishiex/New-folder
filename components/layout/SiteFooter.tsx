@@ -27,7 +27,7 @@ export default function SiteFooter() {
       </div>
       <div className="flex flex-col gap-[10px]">
         <b className="text-white text-[12px] font-normal tracking-[0.12em]">Support</b>
-        <a className="text-[#71829d] text-[12px] leading-[1.6]" href="#contact">Contact us</a>
+        <a className="text-[#71829d] text-[12px] leading-[1.6]" href="#contact">Contact us</a>        <a className="text-[#71829d] text-[12px] leading-[1.6]" href="/privacy-policy">Privacy Policy</a>        <a className="text-[#71829d] text-[12px] leading-[1.6]" href="/terms-and-conditions">Terms & Conditions</a>        <a className="text-[#71829d] text-[12px] leading-[1.6]" href="/refund-cancellation-policy">Refund & Cancellation</a>
         <a className="text-[#71829d] text-[12px] leading-[1.6]" href="#support">FAQs</a>
         <a className="text-[#71829d] text-[12px] leading-[1.6]" href="#support">Warranty</a>
         <a className="text-[#71829d] text-[12px] leading-[1.6]" href="#support">Customer support</a>
@@ -53,3 +53,4 @@ export default function SiteFooter() {
     </footer>
   );
 }
+

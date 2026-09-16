@@ -92,7 +92,9 @@ export function KioskVisual({ compact = false }: { compact?: boolean }) {
       )}
     </div>
   );
-}\n\nexport default function Hero() {
+}
+
+export default function Hero() {
   return (
     <section
       className="lx-hero grid grid-cols-1 md:grid-cols-[0.94fr_1.06fr] md:min-h-[690px] relative"
@@ -126,7 +128,7 @@ export function KioskVisual({ compact = false }: { compact?: boolean }) {
       <div className="lx-hero-visual lx-parallax-kiosk flex items-center justify-center min-h-[min(92vw,430px)] md:min-h-[600px] relative order-2 md:order-none">
         <KioskVisual />
       </div>
-      <div className="lx-hero-features lx-hero-reveal grid gap-[24px] grid-cols-1 md:grid-cols-[repeat(4,1fr)] md:mt-[-78px] mt-0 relative z-10">
+      <div className="lx-hero-features lx-hero-reveal grid grid-cols-2 gap-[20px] md:grid-cols-4 md:mt-[-78px] mt-6 relative z-10">
         <span className="border-l border-[rgba(255,255,255,0.2)] pl-[15px] text-white font-display text-[clamp(12px,3.4vw,14px)] uppercase">
           <b className="inline-flex items-center mr-[8px] text-[#ff00d4]">
             <Pulse size={18} weight="duotone" />
@@ -161,6 +163,8 @@ export function KioskVisual({ compact = false }: { compact?: boolean }) {
     </section>
   );
 }
+
+
 
 
 
