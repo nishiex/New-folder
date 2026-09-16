@@ -128,13 +128,6 @@ export function KioskVisual({ compact = false }: { compact?: boolean }) {
             ))}
           </div>
 
-          <span className="relative z-30 font-display text-[clamp(18px,5.5vw,28px)] leading-[0.92] text-center block drop-shadow-lg">
-            THE
-            <br />
-            <strong className="text-[clamp(28px,7.5vw,42px)]">LOST</strong>
-            <br />
-            TEMPLE
-          </span>
           <small className="relative z-30 text-[clamp(8px,2.2vw,10px)] tracking-[0.2em] mt-2 drop-shadow-md">MOVE TO PLAY</small>
         </div>
       </div>
