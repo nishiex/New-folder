@@ -175,7 +175,7 @@ export default function ArcadeLXLanding() {
   }, []);
 
   return (
-    <main className="arcadelx-site" ref={root}>
+    <main className="arcadelx-site bg-[#020817] text-white min-h-screen overflow-hidden" ref={root}>
       <SiteHeader />
       <Hero />
       <TrustedOrganizations />

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
@@ -24,14 +24,14 @@ import { SectionHeading } from "../ui/ArcadePrimitives";
 
 export function TrustedOrganizations() {
   return (
-    <section className="lx-section lx-trust lx-scroll-reveal" id="business">
-      <p className="lx-eyebrow">Built for everywhere</p>
-      <h2>Trusted by forward-thinking organizations.</h2>
-      <div className="lx-audience-grid">
+    <section className="lx-section lx-trust lx-scroll-reveal px-[40px] py-[110px]" id="business">
+      <p className="lx-eyebrow text-[11px] tracking-[0.2em] uppercase text-[var(--cyan)]">Built for everywhere</p>
+      <h2 className="text-[clamp(1.6rem,2.8vw,2rem)] font-normal">Trusted by forward-thinking organizations.</h2>
+      <div className="lx-audience-grid grid grid-cols-4 gap-[18px] mt-[20px]">
         {audiences.map((item, index) => (
-          <div key={item}>
-            <small>0{index + 1}</small>
-            <b>{item}</b>
+          <div key={item} className="p-[10px]">
+            <small className="text-[#71829d]">0{index + 1}</small>
+            <b className="block mt-2">{item}</b>
           </div>
         ))}
       </div>
@@ -40,7 +40,7 @@ export function TrustedOrganizations() {
 }
 export function ProductFeatures() {
   return (
-    <section className="lx-section lx-features" id="about">
+    <section className="lx-section lx-features px-[40px] py-[110px]" id="about">
       <SectionHeading
         eyebrow="Product features"
         title={
@@ -52,15 +52,13 @@ export function ProductFeatures() {
         }
         description="Everything you need to turn unused space into a magnetic, active entertainment destination."
       />
-      <div className="lx-feature-grid">
+      <div className="lx-feature-grid grid gap-[24px] grid-cols-[repeat(3,1fr)]">
         {features.map(({ number, title, copy, icon: Icon }) => (
-          <article className="lx-feature-card lx-scroll-reveal" key={number}>
-            <small>{number}</small>
-            <b>
-              <Icon size={28} weight="duotone" />
-            </b>
-            <h3>{title}</h3>
-            <p>{copy}</p>
+          <article className="lx-feature-card lx-scroll-reveal p-[17px] min-h-[220px] bg-transparent" key={number}>
+            <small className="text-[#71829d]">{number}</small>
+            <b className="inline-flex items-center mt-2"><Icon size={28} weight="duotone" /></b>
+            <h3 className="mt-4 text-[18px]">{title}</h3>
+            <p className="text-[#71829d] mt-2">{copy}</p>
           </article>
         ))}
       </div>
@@ -70,22 +68,19 @@ export function ProductFeatures() {
 export function MotionField() {
   return (
     <section
-      className="lx-motion-field lx-scroll-reveal"
+      className="lx-motion-field lx-scroll-reveal px-[40px] py-[110px] flex items-center gap-[24px]"
       aria-label="ArcadeLX motion field"
     >
-      <div className="lx-motion-copy">
-        <p className="lx-eyebrow">Feel the energy</p>
-        <h2>
+      <div className="lx-motion-copy max-w-[540px]">
+        <p className="lx-eyebrow text-[11px] tracking-[0.2em] uppercase text-[var(--cyan)]">Feel the energy</p>
+        <h2 className="text-[clamp(2rem,4vw,2.6rem)] font-normal">
           Play has
           <br />
           <em>a pulse.</em>
         </h2>
-        <p>
-          Color, motion and sound come together to make every ArcadeLX moment
-          feel alive.
-        </p>
+        <p className="text-[#71829d] mt-3">Color, motion and sound come together to make every ArcadeLX moment feel alive.</p>
       </div>
-      <div className="lx-motion-canvas">
+      <div className="lx-motion-canvas flex-1 min-h-[240px]">
         <MotionGradient />
       </div>
     </section>
@@ -94,7 +89,7 @@ export function MotionField() {
 export function FeaturedGames() {
   const [active, setActive] = useState(0);
   return (
-    <section className="lx-section lx-games" id="games">
+    <section className="lx-section lx-games px-[40px] py-[110px]" id="games">
       <SectionHeading
         eyebrow="Featured games"
         title={
@@ -106,10 +101,10 @@ export function FeaturedGames() {
         }
         description="Different players. Different moods. One unforgettable arcade experience."
       />
-      <div className="lx-horizontal-track">
+      <div className="lx-horizontal-track flex gap-[14px] overflow-x-auto pb-4">
         {games.map(({ title, category, number }, index) => (
           <article
-            className={`lx-game-card game-${number}${index === active ? " is-active" : ""}`}
+            className={`lx-game-card game-${number} ${index === active ? "is-active" : ""} flex-shrink-0 w-[33.333%] min-w-[220px] p-[12px] cursor-pointer`}
             key={title}
             onClick={() => setActive(index)}
             tabIndex={0}
@@ -117,15 +112,15 @@ export function FeaturedGames() {
               if (event.key === "Enter" || event.key === " ") setActive(index);
             }}
           >
-            <span>{number}</span>
-            <div className="lx-game-art">
+            <span className="text-[#71829d]">{number}</span>
+            <div className="lx-game-art mt-2">
               <i>
                 <GameController size={34} weight="duotone" />
               </i>
-              <strong>{title.split(" ").slice(0, 2).join(" ")}</strong>
+              <strong className="block mt-2">{title.split(" ").slice(0, 2).join(" ")}</strong>
             </div>
-            <small>{category}</small>
-            <h3>{title}</h3>
+            <small className="text-[#71829d]">{category}</small>
+            <h3 className="mt-2">{title}</h3>
           </article>
         ))}
       </div>
@@ -160,17 +155,13 @@ export function Gallery() {
     return () => gsap.killTweensOf(cards);
   }, [active]);
   return (
-    <section className="lx-gallery lx-scroll-reveal" id="gallery">
-      <div className="lx-section-heading lx-gallery-heading">
+    <section className="lx-gallery lx-scroll-reveal px-[40px] py-[110px]" id="gallery">
+      <div className="lx-section-heading lx-gallery-heading flex items-end justify-between mb-[58px]">
         <div>
-          <p className="lx-eyebrow">Gallery</p>
-          <h2>
-            Explore ArcadeLX
-            <br />
-            <em>from every angle.</em>
-          </h2>
+          <p className="lx-eyebrow text-[11px] tracking-[0.15em] uppercase text-[var(--cyan)]">Gallery</p>
+          <h2 className="text-[clamp(2.8rem,4.7vw,5rem)] font-normal">Explore ArcadeLX<br /><em>from every angle.</em></h2>
         </div>
-        <div className="lx-filter-row">
+        <div className="lx-filter-row flex gap-2">
           {["All", "Kiosk", "Setup", "In action", "Events"].map((filter) => (
             <button
               className={active === filter ? "is-active" : ""}
@@ -182,14 +173,14 @@ export function Gallery() {
           ))}
         </div>
       </div>
-      <div className="lx-gallery-track" ref={track}>
+      <div className="lx-gallery-track flex gap-[12px] overflow-x-auto" ref={track}>
         {items.map(({ label, title, category }, index) => (
           <div
-            className={`lx-gallery-card gallery-${index + 1} ${category}`}
+            className={`lx-gallery-card gallery-${index + 1} ${category} min-w-[280px] p-[16px] bg-[rgba(255,255,255,0.02)]`}
             key={label}
           >
-            <span>{label}</span>
-            <b>{title}</b>
+            <span className="text-[11px]">{label}</span>
+            <b className="block mt-2">{title}</b>
           </div>
         ))}
       </div>
@@ -199,7 +190,7 @@ export function Gallery() {
 export function VideoSection() {
   const [active, setActive] = useState(0);
   return (
-    <section className="lx-section lx-video" id="video">
+    <section className="lx-section lx-video px-[40px] py-[110px]" id="video">
       <SectionHeading
         eyebrow="Video"
         title={
@@ -210,14 +201,14 @@ export function VideoSection() {
           </>
         }
       />
-      <div className="lx-video-layout">
-        <div className="lx-video-player">
-          <div className="lx-play-button">
+      <div className="lx-video-layout flex gap-[24px] mt-6">
+        <div className="lx-video-player bg-[rgba(0,0,0,0.2)] p-6 rounded-md flex-1 min-h-[220px]">
+          <div className="lx-play-button inline-flex items-center justify-center w-[64px] h-[64px] bg-[rgba(255,255,255,0.06)] rounded-full">
             <Play size={22} weight="fill" />
           </div>
-          <small>ARCADELX / PLAY FILM / 0{active + 1}</small>
+          <small className="block mt-4 text-[#71829d]">ARCADELX / PLAY FILM / 0{active + 1}</small>
         </div>
-        <div className="lx-video-list">
+        <div className="lx-video-list w-[320px] flex flex-col gap-3">
           {videos.map(({ title, time }, index) => (
             <button
               className={index === active ? "is-active" : ""}
@@ -236,40 +227,40 @@ export function VideoSection() {
 }
 export function WhyArcadeLX() {
   return (
-    <section className="lx-why lx-scroll-reveal">
+    <section className="lx-why lx-scroll-reveal px-[40px] py-[110px]">
       <div>
-        <p className="lx-eyebrow">Why ArcadeLX?</p>
-        <h2>
+        <p className="lx-eyebrow text-[11px] tracking-[0.2em] uppercase text-[var(--cyan)]">Why ArcadeLX?</p>
+        <h2 className="text-[clamp(2rem,4vw,2.6rem)] font-normal">
           More than just games.
           <br />
           <em>A healthier, happier tomorrow.</em>
         </h2>
       </div>
-      <div className="lx-benefit-grid">
-        <span>
+      <div className="lx-benefit-grid grid grid-cols-3 gap-[20px] mt-6">
+        <span className="p-[12px] bg-transparent">
           <Heart weight="duotone" />
-          <b>Active lifestyle</b>
-          <small>Turn screen time into movement time.</small>
+          <b className="block mt-2">Active lifestyle</b>
+          <small className="block text-[#71829d]">Turn screen time into movement time.</small>
         </span>
-        <span>
+        <span className="p-[12px] bg-transparent">
           <UsersThree weight="duotone" />
-          <b>Increases engagement</b>
-          <small>Interactive experiences players remember.</small>
+          <b className="block mt-2">Increases engagement</b>
+          <small className="block text-[#71829d]">Interactive experiences players remember.</small>
         </span>
-        <span>
+        <span className="p-[12px] bg-transparent">
           <TrendUp weight="duotone" />
-          <b>New revenue stream</b>
-          <small>Transform unused space into energy.</small>
+          <b className="block mt-2">New revenue stream</b>
+          <small className="block text-[#71829d]">Transform unused space into energy.</small>
         </span>
-        <span>
+        <span className="p-[12px] bg-transparent">
           <Star weight="duotone" />
-          <b>Premium look & feel</b>
-          <small>Designed to stand out.</small>
+          <b className="block mt-2">Premium look & feel</b>
+          <small className="block text-[#71829d]">Designed to stand out.</small>
         </span>
-        <span>
+        <span className="p-[12px] bg-transparent">
           <Lightning weight="duotone" />
-          <b>All age groups</b>
-          <small>Fun for kids, families and adults.</small>
+          <b className="block mt-2">All age groups</b>
+          <small className="block text-[#71829d]">Fun for kids, families and adults.</small>
         </span>
       </div>
     </section>
@@ -277,17 +268,17 @@ export function WhyArcadeLX() {
 }
 export function Statistics() {
   return (
-    <section className="lx-stats lx-scroll-reveal">
+    <section className="lx-stats lx-scroll-reveal grid grid-cols-3 gap-[18px] px-[40px] py-[110px]">
       {stats.map(({ value, label }) => (
-        <div key={label}>
+        <div key={label} className="p-[15px]">
           <strong
-            className="lx-stat-value"
+            className="lx-stat-value text-[3.2rem] block"
             data-value={value.replace(/\D/g, "")}
             data-suffix={value.replace(/\d/g, "")}
           >
             {value}
           </strong>
-          <span>{label}</span>
+          <span className="block text-[#71829d]">{label}</span>
         </div>
       ))}
     </section>
@@ -296,31 +287,25 @@ export function Statistics() {
 export function FinalCTA() {
   return (
     <section
-      className="lx-final-cta lx-scroll-reveal"
+      className="lx-final-cta lx-scroll-reveal px-[40px] py-[110px] flex items-center gap-[40px]"
       id="contact"
     >
-      <div>
-        <p className="lx-eyebrow">Ready when you are</p>
-        <h2>
+      <div className="flex-1">
+        <p className="lx-eyebrow text-[11px] tracking-[0.2em] uppercase text-[var(--cyan)]">Ready when you are</p>
+        <h2 className="text-[clamp(2rem,4vw,2.6rem)] font-normal">
           Ready to bring
           <br />
           <em>ArcadeLX to your space?</em>
         </h2>
-        <p>Get pricing, customization options, and installation support.</p>
-        <div className="lx-actions">
-          <a className="lx-order" href="mailto:hello@arcadelx.com">
-            Order now <span>↗</span>
+        <p className="text-[#71829d] mt-3">Get pricing, customization options, and installation support.</p>
+        <div className="lx-actions mt-6 flex items-center gap-[18px]">
+          <a className="lx-order inline-flex items-center" href="mailto:hello@arcadelx.com">
+            Order now <span className="ml-2"></span>
           </a>
-          <a className="lx-watch" href="mailto:hello@arcadelx.com">
+          <a className="lx-watch inline-flex items-center text-[#fff]" href="mailto:hello@arcadelx.com">
             Request a demo
           </a>
         </div>
-        <ul>
-          <li>Best for malls, corporates, schools, gyms</li>
-          <li>Flexible purchase or rental options</li>
-          <li>Pan India support</li>
-          <li>Custom branding available</li>
-        </ul>
       </div>
       <KioskVisual compact />
     </section>

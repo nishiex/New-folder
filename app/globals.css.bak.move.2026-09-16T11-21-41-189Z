@@ -1351,8 +1351,6 @@ h2 em {
   position: absolute;
   right: 0;
   text-transform: uppercase;
-
- }
  .lx-visual-label b {
   color: #fff;
   font-weight: 400;
@@ -2355,4 +2353,4 @@ h2 em {
 
 
 
-
+}

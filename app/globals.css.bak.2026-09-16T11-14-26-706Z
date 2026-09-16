@@ -1351,8 +1351,6 @@ h2 em {
   position: absolute;
   right: 0;
   text-transform: uppercase;
-
- }
  .lx-visual-label b {
   color: #fff;
   font-weight: 400;
@@ -2345,8 +2343,6 @@ h2 em {
 
 /* Tailwind helper for neon cyan text shadow used where needed */
 .neon-cyan { text-shadow: 0 0 14px rgba(0,217,255,0.55); }
-
-
 
 
 

@@ -1,4 +1,4 @@
-import { memo } from "react";
+﻿import { memo } from "react";
 import { Cube, Play, Plug, Pulse, UsersThree } from "@phosphor-icons/react";
 import { ShaderGradient, ShaderGradientCanvas } from "@shadergradient/react";
 import { NeonButton } from "../ui/ArcadePrimitives";
@@ -62,9 +62,9 @@ export const MotionGradient = memo(function MotionGradient() {
 
 export function KioskVisual({ compact = false }: { compact?: boolean }) {
   return (
-    <div className={`lx-kiosk-wrap${compact ? " lx-kiosk-compact" : ""}`}>
+    <div className={`lx-kiosk-wrap ${compact ? "lx-kiosk-compact" : ""} relative z-10 flex items-center justify-center`}>
       <div className="lx-kiosk-glow" />
-      <div className="lx-kiosk">
+      <div className="lx-kiosk relative">
         <div className="lx-kiosk-top">
           ARCADELX <b>AX</b>
         </div>
@@ -79,14 +79,9 @@ export function KioskVisual({ compact = false }: { compact?: boolean }) {
           </span>
           <small>MOVE TO PLAY</small>
         </div>
-        {/* <div className="lx-kiosk-base">
-          <i />
-          <i />
-          <i />
-        </div> */}
       </div>
       {!compact && (
-        <p className="lx-visual-label">
+        <p className="lx-visual-label absolute bottom-[18px] text-[11px] right-0">
           GAMING
           <br />
           <b>MEETS MOVEMENT</b>
@@ -98,57 +93,35 @@ export function KioskVisual({ compact = false }: { compact?: boolean }) {
 
 export default function Hero() {
   return (
-    <section className="lx-hero" id="home">
+    <section className="lx-hero grid grid-cols-[0.94fr_1.06fr] min-h-[690px] relative" id="home">
       <div className="lx-parallax-bg" />
-      <div className="lx-hero-copy lx-parallax-copy">
-        <p className="lx-eyebrow lx-hero-reveal">
-          <span /> Move · Play · Stay active
-        </p>
-        <h1 className="lx-hero-reveal">
+      <div className="lx-hero-copy lx-parallax-copy self-center pt-[42px] pb-[90px] relative z-20 max-w-[570px]">
+        <p className="lx-eyebrow lx-hero-reveal text-[11px] tracking-[0.2em] mb-[24px] uppercase text-[var(--cyan)]"><span /> Move Â· Play Â· Stay active</p>
+        <h1 className="lx-hero-reveal text-[clamp(54px,6.5vw,94px)] font-normal tracking-[-0.045em] leading-[0.93] mb-[28px] max-w-[670px] uppercase">
           Live the <em>gaming</em>
           <br /> experience.
         </h1>
-        <p className="lx-hero-description lx-hero-reveal">
+        <p className="lx-hero-description lx-hero-reveal text-[#b8c5d9] text-[16px] leading-[1.7] max-w-[440px]">
           ArcadeLX is a next-generation motion-sensing gaming kiosk that brings
           immersive, full-body gaming to malls, offices, schools and public
           spaces.
         </p>
-        <div className="lx-actions lx-hero-reveal">
+        <div className="lx-actions lx-hero-reveal flex items-center gap-[28px] mt-[38px] mb-[46px]">
           <NeonButton href="#contact">Order now</NeonButton>
-          <a className="lx-watch" href="#video">
+          <a className="lx-watch inline-flex items-center gap-2 text-[#fff] text-[14px]" href="#video">
             <Play className="lx-inline-icon" size={16} weight="fill" /> Watch
             video
           </a>
         </div>
       </div>
-      <div className="lx-hero-visual lx-parallax-kiosk">
+      <div className="lx-hero-visual lx-parallax-kiosk flex items-center justify-center min-h-[600px] relative">
         <KioskVisual />
       </div>
-      <div className="lx-hero-features lx-hero-reveal">
-        <span>
-          <b>
-            <Pulse size={18} weight="duotone" />
-          </b>{" "}
-          Motion sensing<small>Gameplay</small>
-        </span>
-        <span>
-          <b>
-            <UsersThree size={18} weight="duotone" />
-          </b>{" "}
-          Fun for all<small>Age groups</small>
-        </span>
-        <span>
-          <b>
-            <Cube size={18} weight="duotone" />
-          </b>{" "}
-          Compact & efficient<small>Space efficient</small>
-        </span>
-        <span>
-          <b>
-            <Plug size={18} weight="duotone" />
-          </b>{" "}
-          Plug & play<small>Setup</small>
-        </span>
+      <div className="lx-hero-features lx-hero-reveal grid gap-[24px] grid-cols-[repeat(4,1fr)] mt-[-78px] relative z-10">
+        <span className="border-l border-[rgba(255,255,255,0.2)] pl-[15px] text-white text-[12px] uppercase"><b className="inline-flex items-center mr-[8px] text-[#ff00d4]"><Pulse size={18} weight="duotone" /></b> Motion sensing<small className="block text-[#71829d] text-[11px]">Gameplay</small></span>
+        <span className="border-l border-[rgba(255,255,255,0.2)] pl-[15px] text-white text-[12px] uppercase"><b className="inline-flex items-center mr-[8px] text-[#ff00d4]"><UsersThree size={18} weight="duotone" /></b> Fun for all<small className="block text-[#71829d] text-[11px]">Age groups</small></span>
+        <span className="border-l border-[rgba(255,255,255,0.2)] pl-[15px] text-white text-[12px] uppercase"><b className="inline-flex items-center mr-[8px] text-[#ff00d4]"><Cube size={18} weight="duotone" /></b> Compact & efficient<small className="block text-[#71829d] text-[11px]">Space efficient</small></span>
+        <span className="border-l border-[rgba(255,255,255,0.2)] pl-[15px] text-white text-[12px] uppercase"><b className="inline-flex items-center mr-[8px] text-[#ff00d4]"><Plug size={18} weight="duotone" /></b> Plug & play<small className="block text-[#71829d] text-[11px]">Setup</small></span>
       </div>
     </section>
   );
