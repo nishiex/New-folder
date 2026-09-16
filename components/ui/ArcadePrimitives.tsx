@@ -1,14 +1,15 @@
-﻿import type { ReactNode } from "react";
+import type { ReactNode } from "react";
 import { ArrowUpRight } from "@phosphor-icons/react";
 
 export function NeonButton({ href, children, className = "" }: { href: string; children: ReactNode; className?: string }) {
   return (
     <a
       href={href}
-      className={`inline-flex items-center justify-center gap-2 px-4 py-2 md:px-6 md:py-3 text-white font-bold uppercase tracking-wider text-[clamp(12px,3.2vw,14px)] rounded-none bg-gradient-to-r from-[#66e6ff] via-[#5d8dff] to-[#e868ff] shadow-[0_0_18px_rgba(90,203,255,0.18)] hover:shadow-[0_0_32px_rgba(90,203,255,0.28)] transition-transform duration-200 transform-gpu hover:-translate-y-[2px] ${className}`}
+      style={{ background: "linear-gradient(90deg, #00d9ff, #168cff 35%, #7a00ff 70%, #ff00d4)" }}
+      className={`inline-flex items-center justify-center gap-2 min-h-[46px] px-[24px] text-white text-[15px] font-medium transition-all duration-[250ms] hover:-translate-y-[2px] ${className}`}
     >
-      <span className="leading-none">{children}</span>
-      <ArrowUpRight size={16} weight="bold" />
+      <span>{children}</span>
+      <ArrowUpRight size={18} weight="bold" />
     </a>
   );
 }

@@ -1,4 +1,8 @@
-﻿import { memo } from "react";
+"use client";
+
+import { memo, useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import gsap from "gsap";
 import { Cube, Play, Plug, Pulse, UsersThree } from "@phosphor-icons/react";
 import { ShaderGradient, ShaderGradientCanvas } from "@shadergradient/react";
 import { NeonButton } from "../ui/ArcadePrimitives";
@@ -60,9 +64,40 @@ export const MotionGradient = memo(function MotionGradient() {
   );
 });
 
+const UI_SCREENS = [
+  "/images/Calibration_Page (1).png",
+  "/images/Catalog (1).png",
+  "/images/Game_Play (1).png",
+  "/images/Payment_Gatewayt (3).png",
+];
+
 export function KioskVisual({ compact = false }: { compact?: boolean }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const images = gsap.utils.toArray<HTMLElement>('.gsap-kiosk-img');
+      if (images.length < 2) return;
+
+      // Set initial state
+      gsap.set(images, { opacity: 0 });
+      gsap.set(images[0], { opacity: 0.8 });
+
+      const tl = gsap.timeline({ repeat: -1 });
+
+      images.forEach((img, i) => {
+        const nextImg = images[(i + 1) % images.length];
+        tl.to(img, { opacity: 0, duration: 1, ease: "power1.inOut", delay: 2.5 })
+          .to(nextImg, { opacity: 0.8, duration: 1, ease: "power1.inOut" }, "<");
+      });
+    }, containerRef);
+
+    return () => ctx.revert(); // cleanup on unmount
+  }, []);
+
   return (
     <div
+      ref={containerRef}
       className={`lx-kiosk-wrap ${compact ? "lx-kiosk-compact" : ""} relative z-10 flex items-center justify-center w-[92vw] max-w-[420px] md:w-auto md:max-w-none`}
     >
       <div className="lx-kiosk-glow" />
@@ -71,16 +106,36 @@ export function KioskVisual({ compact = false }: { compact?: boolean }) {
           <span className="font-display text-[clamp(14px,4.2vw,20px)]">ARCADELX</span>
           <b className="text-[clamp(14px,4.0vw,20px)]">AX</b>
         </div>
-        <div className="lx-kiosk-screen">
-          <div className="lx-temple-grid" />
-          <span className="font-display text-[clamp(18px,5.5vw,28px)] leading-[0.92] text-center block">
+        <div className="lx-kiosk-screen relative overflow-hidden flex flex-col justify-center items-center">
+          {/* Keep the grid for the retro effect */}
+          <div className="lx-temple-grid z-20 pointer-events-none" />
+
+          {/* Carousel of UI screens */}
+          <div className="absolute inset-0 z-10">
+            {UI_SCREENS.map((screen, idx) => (
+              <div
+                key={screen}
+                className="gsap-kiosk-img absolute inset-0"
+                style={{ opacity: idx === 0 ? 0.8 : 0 }}
+              >
+                <Image
+                  src={screen}
+                  alt={`Kiosk Screen ${idx + 1}`}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </div>
+
+          <span className="relative z-30 font-display text-[clamp(18px,5.5vw,28px)] leading-[0.92] text-center block drop-shadow-lg">
             THE
             <br />
             <strong className="text-[clamp(28px,7.5vw,42px)]">LOST</strong>
             <br />
             TEMPLE
           </span>
-          <small className="text-[clamp(8px,2.2vw,10px)] tracking-[0.2em]">MOVE TO PLAY</small>
+          <small className="relative z-30 text-[clamp(8px,2.2vw,10px)] tracking-[0.2em] mt-2 drop-shadow-md">MOVE TO PLAY</small>
         </div>
       </div>
       {!compact && (
@@ -114,7 +169,7 @@ export default function Hero() {
           immersive, full-body gaming to malls, offices, schools and public
           spaces.
         </p>
-        <div className="lx-actions lx-hero-reveal flex items-center gap-[28px] mt-[38px] mb-[46px]">
+        <div className="lx-actions lx-hero-reveal flex items-center gap-[28px] mt-[38px] mb-[46px] ">
           <NeonButton href="#contact">Order now</NeonButton>
           <a
             className="lx-watch inline-flex items-center gap-2 text-[#fff] text-[14px]"
